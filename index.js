@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 app.use(cors())
 app.use(require("./routes/index"));
 
+app.get('/' , (req, resp) => {
+  return resp.status(200);
+})
 app.listen(3200, (error) => {
   if (error) console.log(error);
   console.log("Running on port 3200");
