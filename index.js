@@ -29,5 +29,5 @@ connectToDb();
 
 
 app.get('/' , (req, resp) => {
-  return resp.status(200);
+  return resp.status(200).json({ok: true});
 })
