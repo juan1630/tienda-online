@@ -7,7 +7,6 @@ function validateToken(req, resp, next) {
   try {
     if (token.length > 1 || token == undefined) {
       const validatedToken = jwt.verify(token, process.env.SECRET);
-      console.log(validatedToken);
       if (validatedToken) {
         next();
       }
