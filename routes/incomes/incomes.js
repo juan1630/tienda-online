@@ -74,9 +74,23 @@ app.post("/expenses", validateToken, async function (req, resp) {
 
 app.post("/expenses/:user", validateToken, async (req, resp) => {
   try {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth(); // getMonth() devuelve de 0 a 11
+
+    const startDate = new Date(year, month, 1);
+    const endDate = new Date(year, month + 1, 0, 23, 59, 59, 999); // Último día del mes
+
     const { user } = req.params;
 
-    const ExpensesFound = await expenses.find({ user });
+    const ExpensesFound = await expenses.find({
+      user,
+      createdDate: {
+        $gte: startDate,
+        $lte: endDate,
+      },
+    });
+
     if (ExpensesFound) {
       return resp.status(200).json({
         ok: true,

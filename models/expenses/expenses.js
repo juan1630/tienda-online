@@ -4,7 +4,8 @@ const expensesSchema = new mongoose.Schema(
   {
     amount: { type: Number, required: true },
     category: { type: String, trim: true, required: true },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "users"}
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+    createdDate: { type: Date, default: Date.now },
   },
   {
     timestamps: {
@@ -14,5 +15,4 @@ const expensesSchema = new mongoose.Schema(
   }
 );
 
-
-module.exports = mongoose.model('expenses', expensesSchema);
+module.exports = mongoose.model("expenses", expensesSchema);
