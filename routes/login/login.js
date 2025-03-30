@@ -7,6 +7,7 @@ const app = express();
 app.post("/login", async (req, resp) => {
   try {
     const { body } = req;
+    console.log(body, 'bodyyy')
     const userFound = await user.findOne({ email: body.email });
     if (userFound) {
       const comparedPasword = bcrypt.compareSync(
