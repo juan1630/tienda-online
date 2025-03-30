@@ -7,7 +7,6 @@ const app = express();
 app.post("/users", async (req, resp) => {
   try {
     const { body } = req;
-    console.log(body);
 
     const hashedPassword = bcrypt.hashSync(body.password, 10);
 
